@@ -1,0 +1,43 @@
+@import "styles/vars"
+
+section.c-resume-page
+	margin: 0 auto
+	background: white
+	color: black
+	padding: 40px 30px
+	display: flex
+	align-items: stretch
+	justify-content: space-between
+
+	> .c-resume-section
+		flex-grow: 1
+		flex-shrink: 1
+
+	&.column
+		> .c-resume-section
+			$margin: 40px
+			&:first-child
+				margin-right: $margin
+				width: 30%
+			&:last-child
+				width: calc(70% - #{$margin})
+
+	&.reverse_column
+		> .c-resume-section
+			$margin: 40px
+			&:first-child
+				width: calc(70% - #{$margin})
+			&:last-child
+				margin-left: $margin
+				width: 30%
+
+	&.solid
+		// nothing yet
+
+	&.triple
+		flex-wrap: wrap
+		> .c-resume-section
+			&:first-child
+				width: 100%
+			&:last-child
+				width: 70%

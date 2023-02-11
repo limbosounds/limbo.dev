@@ -6,6 +6,13 @@ export interface ResumeStoreDefaultData {
 	position: string
 }
 
+export const isMainSection = (
+	section: ResumeSection | ResumeMainSection
+): section is ResumeMainSection => {
+	return typeof section["name"] != "undefined"
+		&& typeof section["position"] != "undefined"
+}
+
 const getDefaultSections = <T extends ResumeLayoutType = ResumeLayoutType>(
 	layout: T,
 	defaultData: ResumeStoreDefaultData,

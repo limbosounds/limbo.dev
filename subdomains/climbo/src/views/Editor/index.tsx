@@ -3,7 +3,7 @@ import { observer } from "mobx-react"
 
 import "styles/views/editor"
 import { ResumeStore } from "stores/Resume"
-import ResumePage from "./components/ResumePage"
+import ResumePage from "./components/Page"
 
 export interface EditorProps {
 
@@ -17,14 +17,13 @@ export interface EditorState {
 export default
 class Editor
 extends React.Component<EditorProps, EditorState> {
-	resume = new ResumeStore("column", { name: "Kappa Pride", position: "Frontend Developer" })
+	store = new ResumeStore("column", { name: "Kappa Pride", position: "Frontend Developer" })
 
 	render() {
 		return <>
 			<main className="v-editor">
 				<ResumePage
-					data={this.resume.data}
-					layout={this.resume.layout}
+					store={this.store}
 					format="a4"
 					orientation="portrait"
 				/>
