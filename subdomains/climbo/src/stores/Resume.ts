@@ -49,7 +49,7 @@ export class ResumeStore<T extends ResumeLayoutType> {
 		}
 
 	constructor(
-		private readonly layout: T,
+		readonly layout: T,
 		private readonly defaultData: ResumeStoreDefaultData,
 	) {
 		makeObservable(this)
