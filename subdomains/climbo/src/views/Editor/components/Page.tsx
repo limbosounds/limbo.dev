@@ -3,25 +3,26 @@ import { observer } from "mobx-react"
 
 import "styles/views/editor/components/page"
 
-import { PageFormat, PageOrientation } from "typings"
-import { ResumeLayoutType } from "typings/Resume"
-import { isMainSection, ResumeStore } from "stores/Resume"
-import ResumeSectionComponent from "./Section"
+import { PageFormat } from "typings"
 
-export interface ResumePageProps<T extends ResumeLayoutType> {
-	format: PageFormat
-	orientation: PageOrientation
-	store: ResumeStore<T>
+import { IResume } from "models/Resume"
+import { ITemplate } from "models/Template"
+
+import PageSection from "./Section"
+
+export interface PageProps {
+	resume: IResume
+	template: ITemplate
 }
 
-export interface ResumePageState {
+export interface PageState {
 
 }
 
 @observer
 export default
-class ResumePage<T extends ResumeLayoutType>
-extends React.Component<ResumePageProps<T>, ResumePageState> {
+class Page
+extends React.Component<PageProps, PageState> {
 	sizes
 		: {
 			[key in PageFormat]: {
@@ -41,22 +42,23 @@ extends React.Component<ResumePageProps<T>, ResumePageState> {
 		}
 
 	render() {
-		const { format, orientation, store } = this.props
+		const { template, resume } = this.props
+		const { format, layout, orientation } = template
 		const { measure, size } = this.sizes[format]
 		const [ width, height ] = orientation == "landscape" ? size.reverse() : size
 
 		return <>
 			<section
-				className={`c-resume-page ${store.layout}`}
+				className={`c-resume-page ${layout}`}
 				style={{
 					width: `${width}${measure}`,
 					minHeight: `${height}${measure}`,
 				}}
 			>
-				{store.data.sections.map((section, i) => {
-					return <ResumeSectionComponent
+				{resume.sections.map((section, i) => {
+					return <PageSection
 						key={i}
-						isMain={isMainSection(section)}
+						resume={resume}
 						section={section}
 					/>
 				})}

@@ -1,0 +1,27 @@
+@import "styles/vars"
+
+div.c-resume-element-wrapper
+	position: relative
+	&:before, &:after
+		pointer-events: none
+		+transition(opacity)
+		opacity: 0
+
+	&:hover
+		&:before, &:after
+			opacity: 1
+
+	&:before
+		content: ""
+		+pos(absolute, -10px, -10px, -10px, -10px)
+		border-radius: 6px
+		box-shadow: inset 0 0 0 1px rgba(black, .12)
+
+	&:after
+		content: attr(data-info)
+		padding: 0 5px
+		line-height: 12px
+		font-size: 12px
+		background: white
+		color: rgba(black, .54)
+		+pos(absolute, -16px, -5px)

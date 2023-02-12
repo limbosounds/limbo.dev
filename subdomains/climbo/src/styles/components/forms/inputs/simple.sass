@@ -1,0 +1,19 @@
+@import "styles/vars"
+
+div.c-simple-input
+	position: relative
+	flex-grow: 1
+	flex-shrink: 1
+
+	input
+		display: black
+		width: 100%
+		height: 40px
+		box-shadow: inset 0 0 0 1px rgba(black, .38)
+		border-radius: 6px
+		+transition(box-shadow)
+		padding: 0 10px
+		+placeholder
+			color: rgba(black, .38)
+		&:focus
+			box-shadow: inset 0 0 0 2px $colorMain

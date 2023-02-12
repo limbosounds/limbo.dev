@@ -1,4 +1,5 @@
 import { Instance, types } from "mobx-state-tree"
+import { EditableStringModel, IEditableString } from "../components/EditableString"
 
 export interface ITileElement extends Instance<typeof TileElementModel> {}
 
@@ -6,38 +7,23 @@ export interface ITileElement extends Instance<typeof TileElementModel> {}
 export const TileElementModel = types
 	.model("TileElement", {
 		type: types.literal("tile"),
-		title: types.optional(types.string, "Tile"),
-		items: types.array(types.string)
+		title: types.optional(
+			EditableStringModel.named("TileElementTitle"),
+			{ value: "Tile" },
+		),
+		items: types.array(EditableStringModel.named("TileItem"))
 	})
 	.actions(self => {
 		return {
 			add: (
-				item: string
+				item: IEditableString,
 			) => {
 				self.items.push(item)
 			},
 			remove: (
-				item: string
+				item: IEditableString,
 			) => {
 				self.items.remove(item)
 			},
-			update: (
-				index: number,
-				newValue: string,
-			) => {
-				self.items[index] = newValue
-			},
-			updateTitle: (
-				value: string
-			) => {
-				self.title = value.trim()
-			}
-		}
-	})
-	.views(self => {
-		return {
-			get isValid(): boolean {
-				return self.title.length > 0
-			}
 		}
 	})
