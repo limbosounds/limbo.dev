@@ -1,4 +1,5 @@
 import { Instance, types } from "mobx-state-tree"
+import { EditableStringModel } from "./components/EditableString"
 
 import { ResumeSectionModel } from "./Section"
 
@@ -6,8 +7,14 @@ export interface IResume extends Instance<typeof ResumeModel> {}
 
 export const ResumeModel = types
 	.model("Resume", {
-		name: types.string,
-		position: types.string,
+		name: types.optional(
+			EditableStringModel.named("ResumeName"),
+			{ value: "Your Name" },
+		),
+		position: types.optional(
+			EditableStringModel.named("ResumePosition"),
+			{ value: "Your Position" },
+		),
 		photo: types.maybe(types.string),
 		background: types.maybe(types.string),
 		description: types.maybe(types.string),
@@ -15,16 +22,6 @@ export const ResumeModel = types
 	})
 	.actions(self => {
 		return {
-			updateName: (
-				name: string,
-			) => {
-				self.name = name.trim()
-			},
-			updatePosition: (
-				position: string,
-			) => {
-				self.position = position.trim()
-			},
 			setDescription: (
 				value: string,
 			) => {
@@ -34,7 +31,7 @@ export const ResumeModel = types
 				self.description = undefined
 			},
 			setPhoto: (
-				value: string,
+				value?: string,
 			) => {
 				self.photo = value
 			},

@@ -1,0 +1,62 @@
+@import "styles/vars"
+
+div.c-photo-element
+	width: 60%
+	&.align
+		&-left
+			margin-right: auto
+		&-center
+			margin-left: auto
+			margin-right: auto
+		&-right
+			margin-left: auto
+
+	div.pe-box
+		width: 100%
+		padding-top: 100%
+		position: relative
+		overflow: hidden
+		border-radius: 50%
+		background: white
+		box-shadow: 0 0 0 5px rgba($colorMain, .54)
+		> *
+			+pos(absolute, 0, 0, 0, 0)
+			width: 100%
+			height: 100%
+
+		div.pe-remove, div.pe-placeholder
+			display: flex
+			flex-direction: column
+			align-items: center
+			justify-content: center
+			cursor: pointer
+			i
+				font-size: 20px
+			span
+				margin-top: 10px
+				font-size: 12px
+				font-weight: 700
+
+		div.pe-photo
+			img
+				+pos(absolute, 0, 0, 0, 0)
+				display: block
+				width: 100%
+				height: 100%
+				object-fit: cover
+			div.pe-remove
+				+pos(absolute, 0, 0, 0, 0)
+				+transition(opacity)
+				background: rgba($colorMain, .9)
+				color: white
+				opacity: 0
+				&:hover
+					opacity: 1
+
+		div.pe-placeholder
+			background: rgba($colorMain, .12)
+			color: rgba($colorMain, .54)
+			+transition(background, color)
+			&:hover
+				background: rgba($colorMain, .18)
+				color: $colorMain

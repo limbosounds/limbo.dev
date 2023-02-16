@@ -27,8 +27,6 @@ extends React.Component<EditorProps, EditorState> {
 	})
 
 	resume = ResumeModel.create({
-		name: "Your Name",
-		position: "Your position",
 		sections: [ // TODO dependency from template layout
 			{
 				isMain: true,

@@ -6,6 +6,10 @@ import "styles/views/editor/components/section"
 import { IResumeSection } from "models/Resume/Section"
 import { IResume } from "models/Resume"
 
+import PhotoElement from "./elements/Photo"
+import NameElement from "./elements/Name"
+import PositionElement from "./elements/Position"
+
 export interface PageSectionProps {
 	section: IResumeSection
 	resume: IResume
@@ -22,12 +26,24 @@ extends React.Component<PageSectionProps, PageSectionState> {
 	render() {
 		const { section, resume } = this.props
 		const { isMain, hasDescriptionSlot } = section
-		isMain
 		hasDescriptionSlot
 		resume
 		return <>
 			<div className="c-resume-section">
-
+				{isMain &&
+					<header className="rs-main-info">
+						<PhotoElement
+							photo={resume.photo}
+							onChange={resume.setPhoto}
+						/>
+						<NameElement
+							model={resume.name}
+						/>
+						<PositionElement
+							model={resume.position}
+						/>
+					</header>
+				}
 			</div>
 		</>
 	}

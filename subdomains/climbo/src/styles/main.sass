@@ -32,5 +32,28 @@ body
 			box-sizing: border-box
 
 .no-print
+	.__preview &
+		display: none
 	@media print
 		display: none !important
+
+[contenteditable=true]
+	&:focus
+		outline: 2px solid rgba(black, .38)
+		outline-offset: 2px
+	&:not(.multiline)
+		*
+			display: inline
+			font-size: inherit !important
+			font-weight: inherit !important
+			font-style: normal !important
+			text-decoration: none !important
+			color: inherit !important
+			background: transparent !important
+			text-align: inherit !important
+			line-height: inherit !important
+			letter-spacing: inherit !important
+			margin: 0 !important
+			padding: 0 !important
+		br
+			display: none !important
