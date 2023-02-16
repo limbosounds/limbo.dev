@@ -9,6 +9,7 @@ import { IResume } from "models/Resume"
 import PhotoElement from "./elements/Photo"
 import NameElement from "./elements/Name"
 import PositionElement from "./elements/Position"
+import ElementCreator from "./ElementCreator"
 
 export interface PageSectionProps {
 	section: IResumeSection
@@ -44,6 +45,7 @@ extends React.Component<PageSectionProps, PageSectionState> {
 						/>
 					</header>
 				}
+				<ElementCreator />
 			</div>
 		</>
 	}

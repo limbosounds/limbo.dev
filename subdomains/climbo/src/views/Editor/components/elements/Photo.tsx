@@ -52,7 +52,7 @@ extends React.Component<PhotoElementProps, PhotoElementState> {
 		const { photo, alignment = "center" } = this.props
 
 		return <>
-			<div className={`c-photo-element align-${alignment} ${!photo ? "no-print" : ""}`}>
+			<div className={`c-photo-element align-${alignment} ${!photo ? "__no-print" : ""}`}>
 				<input
 					type="file"
 					ref={r => this.filepicker = r!}

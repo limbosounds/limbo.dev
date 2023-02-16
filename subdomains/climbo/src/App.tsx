@@ -2,6 +2,7 @@ import React from "react"
 import { observer } from "mobx-react"
 import { Route, RouteComponentProps, Switch } from "react-router-dom"
 
+import "styles/animations"
 import "styles/main"
 import "styles/uni"
 
