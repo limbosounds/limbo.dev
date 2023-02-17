@@ -25,11 +25,34 @@ div.c-element-creator
 div.c-element-creator-menu
 	color: black
 	position: fixed
-	width: 360px
+	max-width: 360px
 	background: white
 	border-radius: 6px
 	box-shadow: 0 12px 24px rgba(black, .24)
 	transform-origin: top left
+	overflow: hidden
 	+singleRunAnimation(fancyScaleIn, 300ms)
 	&.__temp
 		padding: 20px
+
+	div.ecm-item
+		padding: 15px
+		border-bottom: 1px solid rgba(black, .12)
+		cursor: pointer
+		+transition(background)
+		&:last-child
+			border-bottom: none
+
+		&:hover
+			background: rgba($colorMain, .12)
+			h3
+				color: $colorMain
+
+		h3
+			font-size: 20px
+			margin-bottom: 5px
+			+transition(color)
+
+		p
+			font-size: 14px
+			color: rgba(black, .54)

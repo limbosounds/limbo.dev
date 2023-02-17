@@ -8,8 +8,8 @@ export const resumeLayouts = [
 export const resumeElements = [
 	"tile",
 	"languages",
-	"timeline",
-	"list",
-	"progress_list",
 	"contacts",
+	// "timeline",
+	// "list",
+	// "progress_list",
 ] as const

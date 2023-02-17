@@ -6,6 +6,7 @@ import { IEditableString } from "models/Resume/components/EditableString"
 export interface ContentEditableProps {
 	multiline?: boolean
 	model: IEditableString
+	autofocus?: boolean
 }
 
 export interface ContentEditableState {
@@ -22,6 +23,11 @@ extends React.Component<ContentEditableProps, ContentEditableState> {
 
 	content
 		: HTMLDivElement
+
+	componentDidMount() {
+		if (this.props.autofocus)
+			this.content.focus()
+	}
 
 	handleChange = (
 		event: React.FormEvent<HTMLDivElement>

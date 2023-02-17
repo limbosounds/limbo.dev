@@ -1,6 +1,9 @@
 import React from "react"
 import { observer } from "mobx-react"
 import { Route, RouteComponentProps, Switch } from "react-router-dom"
+import { Display } from "@sounds.of.limbo/tooltip"
+
+import "@sounds.of.limbo/tooltip/styles/sass/tooltip"
 
 import "styles/animations"
 import "styles/main"
@@ -36,6 +39,7 @@ extends React.Component<AppProps, AppState> {
 					component={Playground}
 				/>
 			</Switch>
+			<Display />
 		</>
 	}
 }

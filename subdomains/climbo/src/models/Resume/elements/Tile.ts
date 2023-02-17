@@ -11,7 +11,7 @@ export const TileElementModel = types
 			EditableStringModel.named("TileElementTitle"),
 			{ value: "Tile" },
 		),
-		items: types.array(EditableStringModel.named("TileItem"))
+		items: types.array(EditableStringModel.named("TileItem")),
 	})
 	.actions(self => {
 		return {

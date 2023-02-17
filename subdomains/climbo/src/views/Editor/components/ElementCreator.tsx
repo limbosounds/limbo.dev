@@ -6,9 +6,14 @@ import "styles/views/editor/components/element-creator"
 
 import { Coordinates2D } from "typings"
 import { isEventFiredInsideElement } from "utils/dom"
+import { ResumeElementInstance, ResumeElementType } from "typings/Resume"
+import { resumeElements } from "consts/resume"
+import { TileElementModel } from "models/Resume/elements/Tile"
 
 export interface ElementCreatorProps {
-
+	onSelect: (
+		item: ResumeElementInstance
+	) => void
 }
 
 export interface ElementCreatorState {
@@ -66,6 +71,28 @@ extends React.Component<ElementCreatorProps, ElementCreatorState> {
 		})
 	}
 
+	handleSelect = (
+		type: ResumeElementType
+	) => {
+		let modelInstance: ResumeElementInstance | undefined = undefined
+
+		switch (type) {
+			case "tile":
+				modelInstance = TileElementModel.create({
+					type: "tile",
+					items: [
+						{ value: "Tile item", },
+					],
+				})
+		}
+
+		if (typeof modelInstance == "undefined")
+			return
+
+		this.props.onSelect(modelInstance)
+		this.hideMenu()
+	}
+
 	render() {
 		const { isMenuShown } = this.state
 		return <>
@@ -82,6 +109,7 @@ extends React.Component<ElementCreatorProps, ElementCreatorState> {
 				<ElementCreatorMenu
 					position={this.clickCoords}
 					onOutsideClick={this.hideMenu}
+					onSelect={this.handleSelect}
 				/>,
 				document.body
 			)}
@@ -91,6 +119,10 @@ extends React.Component<ElementCreatorProps, ElementCreatorState> {
 
 interface ElementCreatorMenuProps {
 	position: Coordinates2D
+	availableItems?: ResumeElementType[]
+	onSelect: (
+		type: ResumeElementType
+	) => void
 	onOutsideClick?: () => void
 }
 
@@ -107,6 +139,28 @@ extends React.Component<ElementCreatorMenuProps, ElementCreatorMenuState> {
 	isAbleToHide
 		: boolean
 		= false
+
+	elementTypesContent
+		: {
+			[key in ResumeElementType]: {
+				title: string
+				description: string
+			}
+		}
+		= {
+			tile: {
+				title: "Tile",
+				description: "Typically used for short listing of your skills",
+			},
+			contacts: {
+				title: "Contacts",
+				description: "List of your contacts/socials",
+			},
+			languages: {
+				title: "Languages",
+				description: "List of languages and your proficiencies",
+			},
+		}
 
 	componentDidMount() {
 		document.addEventListener("click", this.handleOutsideClick)
@@ -130,18 +184,33 @@ extends React.Component<ElementCreatorMenuProps, ElementCreatorMenuState> {
 	}
 
 	render() {
+		const { availableItems = resumeElements } = this.props
 		const { x, y } = this.props.position
 
 		return <>
 			<div
 				ref={r => this.wrapper = r!}
-				className="c-element-creator-menu __temp"
+				className="c-element-creator-menu"
 				style={{
 					top: y,
 					left: x,
 				}}
 			>
-				Content Here :)
+				{availableItems.map(type => {
+					const item = this.elementTypesContent[type]
+					return <div
+						key={type}
+						className="ecm-item"
+						onClick={() => this.props.onSelect(type)}
+					>
+						<h3>
+							{item.title}
+						</h3>
+						<p>
+							{item.description}
+						</p>
+					</div>
+				})}
 			</div>
 		</>
 	}

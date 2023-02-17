@@ -10,6 +10,7 @@ import PhotoElement from "./elements/Photo"
 import NameElement from "./elements/Name"
 import PositionElement from "./elements/Position"
 import ElementCreator from "./ElementCreator"
+import TileElement from "./elements/Tile"
 
 export interface PageSectionProps {
 	section: IResumeSection
@@ -45,7 +46,20 @@ extends React.Component<PageSectionProps, PageSectionState> {
 						/>
 					</header>
 				}
-				<ElementCreator />
+				{section.elements.map((element, i) => {
+					switch (element.type) {
+						case "tile":
+							return <TileElement
+								key={i}
+								model={element}
+							/>
+						default:
+							return null
+					}
+				})}
+				<ElementCreator
+					onSelect={instance => section.add(instance)}
+				/>
 			</div>
 		</>
 	}

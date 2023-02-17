@@ -1,14 +1,19 @@
 import { Instance, types } from "mobx-state-tree"
-import { ContactsElementModel, IContactsElement } from "./elements/Contacts"
-import { ILanguagesElement, LanguagesElementModel } from "./elements/Languages"
-import { ITileElement, TileElementModel } from "./elements/Tile"
+import { ResumeElementInstance, ResumeElementModel, ResumeElementType } from "typings/Resume"
+
+import { ContactsElementModel } from "./elements/Contacts"
+import { LanguagesElementModel } from "./elements/Languages"
+import { TileElementModel } from "./elements/Tile"
 
 export interface IResumeSection extends Instance<typeof ResumeSectionModel> {}
 
-type ElementArg =
-	| ITileElement
-	| ILanguagesElement
-	| IContactsElement
+export const typeModelReferrence: {
+	[key in ResumeElementType]: ResumeElementModel
+} = {
+	tile: TileElementModel,
+	languages: LanguagesElementModel,
+	contacts: ContactsElementModel,
+}
 
 export const ResumeSectionModel = types
 	.model("ResumeSection", {
@@ -31,13 +36,13 @@ export const ResumeSectionModel = types
 	.actions(self => {
 		return {
 			add: (
-				item: ElementArg,
+				item: ResumeElementInstance,
 			) => {
 				if (!self.hasSlotsLimit || self.elements.length < self.slotsLimit)
 					self.elements.push(item)
 			},
 			remove: (
-				item: ElementArg,
+				item: ResumeElementInstance,
 			) => {
 				self.elements.remove(item)
 			},
