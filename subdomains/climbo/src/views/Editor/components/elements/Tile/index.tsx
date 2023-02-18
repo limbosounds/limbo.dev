@@ -11,6 +11,7 @@ import { cast } from "mobx-state-tree"
 
 export interface TileElementProps {
 	model: ITileElement
+	onRemove: () => void
 }
 
 export interface TileElementState {
@@ -23,8 +24,13 @@ class TileElement
 extends React.Component<TileElementProps, TileElementState> {
 	render() {
 		const { model } = this.props
+		const creator = () => model.add(cast({ value: "" }))
+		
 		return <>
-			<ElementWrapper info="Tile element">
+			<ElementWrapper
+				info="Tile element"
+				onRemove={this.props.onRemove}
+			>
 				<div className="c-tile-element">
 					<ElementHeader
 						model={model.title}
@@ -34,10 +40,12 @@ extends React.Component<TileElementProps, TileElementState> {
 							return <TileElementItem
 								key={i}
 								model={item}
+								creator={creator}
+								onRemove={() => model.remove(item)}
 							/>
 						})}
 						<TileElementAdd
-							onClick={() => model.add(cast({ value: "" }))}
+							onClick={creator}
 						/>
 					</div>
 				</div>

@@ -1,10 +1,12 @@
 import React from "react"
 import { observer } from "mobx-react"
+import { Element as Tooltip } from "@sounds.of.limbo/tooltip"
 
-import "styles/views/editor/components/element-wrapper"
+import "styles/views/editor/components/elements/wrapper"
 
 export interface ElementWrapperProps {
 	info: string
+	onRemove: () => void
 	children: React.ReactNode
 }
 
@@ -23,6 +25,16 @@ extends React.Component<ElementWrapperProps, ElementWrapperState> {
 				data-info={`${this.props.info}`}
 			>
 				{this.props.children}
+				<Tooltip
+					element="span"
+					elementProps={{
+						className: "rew-remove",
+						onClick: this.props.onRemove
+					}}
+					content="Remove this element"
+				>
+					<i className="fas fa-trash-alt" />
+				</Tooltip>
 			</div>
 		</>
 	}

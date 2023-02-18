@@ -52,6 +52,7 @@ extends React.Component<PageSectionProps, PageSectionState> {
 							return <TileElement
 								key={i}
 								model={element}
+								onRemove={() => section.remove(element)}
 							/>
 						default:
 							return null

@@ -19,7 +19,7 @@ extends React.Component<TileElementAddProps, TileElementAddState> {
 			<Tooltip
 				element="div"
 				elementProps={{
-					className: "c-tile-element-add",
+					className: "c-tile-element-add __no-print",
 					onClick: this.props.onClick
 				}}
 				content="Add item"

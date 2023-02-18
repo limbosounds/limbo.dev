@@ -7,6 +7,8 @@ export interface ContentEditableProps {
 	multiline?: boolean
 	model: IEditableString
 	autofocus?: boolean
+	onEmptySave?: () => void
+	onCtrlEnter?: () => void
 }
 
 export interface ContentEditableState {
@@ -41,6 +43,9 @@ extends React.Component<ContentEditableProps, ContentEditableState> {
 	update = () => {
 		this.props.model.updateValue()
 		this.props.model.setBuffer(this.props.model.value)
+		if (!this.props.model.value && this.props.onEmptySave)
+			return this.props.onEmptySave()
+
 		this.key++
 		this.forceUpdate()
 	}
@@ -57,6 +62,8 @@ extends React.Component<ContentEditableProps, ContentEditableState> {
 				if (!this.props.multiline || event.ctrlKey) {
 					event.preventDefault()
 					this.content.blur()
+					if (event.ctrlKey && !!this.props.model.value)
+						this.props.onCtrlEnter?.()
 				}
 		}
 	}

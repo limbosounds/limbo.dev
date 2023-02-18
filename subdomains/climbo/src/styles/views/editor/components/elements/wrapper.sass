@@ -2,6 +2,7 @@
 
 div.c-resume-element-wrapper
 	position: relative
+	
 	&:before, &:after
 		pointer-events: none
 		+transition(opacity)
@@ -9,6 +10,8 @@ div.c-resume-element-wrapper
 
 	&:hover
 		&:before, &:after
+			opacity: 1
+		span.rew-remove
 			opacity: 1
 
 	&:before
@@ -25,3 +28,19 @@ div.c-resume-element-wrapper
 		background: white
 		color: rgba(black, .54)
 		+pos(absolute, -16px, -5px)
+
+	span.rew-remove
+		+pos(absolute, 0, auto, 0)
+		width: 30px
+		height: 30px
+		border-radius: 3px
+		background: rgba($colorMain, .12)
+		color: $colorMain
+		cursor: pointer
+		opacity: 0
+		display: flex
+		align-items: center
+		justify-content: center
+		+transition(opacity, background)
+		&:hover
+			background: rgba($colorMain, .24)
