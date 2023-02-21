@@ -1,0 +1,41 @@
+@import "styles/vars"
+
+.c-inline-select-item
+	display: inline-flex
+	align-items: center
+	justify-content: space-between
+	cursor: pointer
+	+transition(background)
+	> *
+		pointer-events: none
+	&.block
+		display: flex
+	&:not(:hover):not(.shown)
+		i
+			display: none
+
+div.c-inline-select-list
+	position: fixed
+	background: white
+	overflow: hidden
+	border-radius: 0 6px 6px 6px
+	box-shadow: 0 12px 24px rgba(black, .24)
+	color: black
+	div.isl-item
+		font-size: 14px
+		display: flex
+		align-items: center
+		justify-content: space-between
+		padding: 10px
+		position: relative
+		cursor: pointer
+		+transition(color, background)
+		> i
+			margin-left: 10px
+		&:not(.selected):hover
+			color: $colorMain
+			background: rgba($colorMain, .12)
+		&.selected
+			font-weight: 700
+			color: $colorMain
+			background: rgba($colorMain, .06)

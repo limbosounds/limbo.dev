@@ -1,6 +1,5 @@
 @import "styles/vars"
 
-
 .u-paper
 	background: white
 	color: black
@@ -11,3 +10,7 @@
 	align-items: center
 	justify-content: space-between
 	+childSpaceRight(10px)
+
+.u-fancy-scale-in
+	transform-origin: top left
+	+singleRunAnimation(fancyScaleIn, 300ms)

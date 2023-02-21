@@ -9,6 +9,7 @@ import { isEventFiredInsideElement } from "utils/dom"
 import { ResumeElementInstance, ResumeElementType } from "typings/Resume"
 import { resumeElements } from "consts/resume"
 import { TileElementModel } from "models/Resume/elements/Tile"
+import { LanguagesElementModel } from "models/Resume/elements/Languages"
 
 export interface ElementCreatorProps {
 	onSelect: (
@@ -84,6 +85,17 @@ extends React.Component<ElementCreatorProps, ElementCreatorState> {
 						{ value: "Tile item", },
 					],
 				})
+				break
+			case "languages":
+				modelInstance = LanguagesElementModel.create({
+					type: "languages",
+					items: [
+						{
+							language: { value: "Language" },
+						}
+					]
+				})
+				break
 		}
 
 		if (typeof modelInstance == "undefined")
@@ -190,7 +202,7 @@ extends React.Component<ElementCreatorMenuProps, ElementCreatorMenuState> {
 		return <>
 			<div
 				ref={r => this.wrapper = r!}
-				className="c-element-creator-menu"
+				className="c-element-creator-menu u-fancy-scale-in"
 				style={{
 					top: y,
 					left: x,

@@ -13,3 +13,8 @@ export type Coordinates2D = {
 export type Coordinates3D = {
 	z: number
 } & Coordinates2D
+
+export type Option<T extends string | number = string> = {
+	value: T
+	label: string
+}

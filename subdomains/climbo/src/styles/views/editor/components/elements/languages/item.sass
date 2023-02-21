@@ -1,0 +1,35 @@
+@import "styles/vars"
+
+div.c-language-item
+	padding-left: 20px
+	position: relative
+	margin: 10px 0
+	> i
+		+pos(absolute, 3px, 0)
+		color: rgba($colorMain, .54)
+
+	h3
+		font-size: 1.2em
+		margin-bottom: 5px
+
+	.li-proficiency
+		position: relative
+		height: 20px
+		span.isi-content
+			color: rgba(black, .54)
+			+transition(color)
+		i
+			margin-left: 5px
+		&:before
+			content: ""
+			+pos(absolute, 0, -5px, -5px, 0)
+			background: rgba(black, .06)
+			+transition(opacity)
+			opacity: 0
+			border-radius: 3px
+
+		&:hover, &.shown
+			span.isi-content
+				color: black
+			&:before
+				opacity: 1

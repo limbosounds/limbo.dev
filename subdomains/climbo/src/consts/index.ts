@@ -1,3 +1,5 @@
+import { LanguageProficiency } from "typings"
+
 export const languageProficiencies = [
 	"beginner",
 	"elementary",
@@ -6,6 +8,17 @@ export const languageProficiencies = [
 	"advanced",
 	"fluent",
 ] as const
+
+export const languageProficienciesLabels: {
+	[key in LanguageProficiency]: string
+} = {
+	beginner: "A1 / Beginner",
+	elementary: "A2 / Elementary",
+	lower_intermediate: "B1 / Lower intermediate",
+	upper_intermediate: "B2 / Upper intermediate",
+	advanced: "C1 / Advanced",
+	fluent: "C2 / Fluent",
+}
 
 export const contactTypes = [
 	"email",

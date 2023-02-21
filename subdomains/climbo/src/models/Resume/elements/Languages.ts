@@ -1,6 +1,7 @@
 import { languageProficiencies } from "consts"
 import { Instance, types } from "mobx-state-tree"
 import { LanguageProficiency } from "typings"
+import { EditableStringModel } from "../components/EditableString"
 
 export interface ILanguage extends Instance<typeof LanguageModel> {}
 export interface ILanguagesElement extends Instance<typeof LanguagesElementModel> {}
@@ -8,16 +9,11 @@ export interface ILanguagesElement extends Instance<typeof LanguagesElementModel
 // TODO ordering
 export const LanguageModel = types
 	.model("Language", {
-		language: types.optional(types.string, ""),
-		proficiency: types.optional(types.enumeration([...languageProficiencies]), "elementary"),
+		language: EditableStringModel.named("LanguageName"),
+		proficiency: types.optional(types.enumeration([...languageProficiencies]), "beginner"),
 	})
 	.actions(self => {
 		return {
-			updateLanguage: (
-				value: string,
-			) => {
-				self.language = value.trim()
-			},
 			updateProficiency: (
 				proficiency: LanguageProficiency,
 			) => {
@@ -25,18 +21,14 @@ export const LanguageModel = types
 			},
 		}
 	})
-	.views(self => {
-		return {
-			get isValid(): boolean {
-				return self.language.length > 0
-			},
-		}
-	})
 
 export const LanguagesElementModel = types
 	.model("LanguagesElement", {
 		type: types.literal("languages"),
-		title: types.optional(types.string, "Languages"),
+		title: types.optional(
+			EditableStringModel.named("TileElementTitle"),
+			{ value: "Languages" },
+		),
 		items: types.array(LanguageModel),
 	})
 	.actions(self => {
@@ -50,18 +42,6 @@ export const LanguagesElementModel = types
 				item: ILanguage,
 			) => {
 				self.items.remove(item)
-			},
-			updateTitle: (
-				value: string,
-			) => {
-				self.title = value.trim()
-			}
-		}
-	})
-	.views(self => {
-		return {
-			get isValid(): boolean {
-				return self.title.length > 0
 			},
 		}
 	})

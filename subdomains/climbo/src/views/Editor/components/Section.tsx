@@ -11,6 +11,7 @@ import NameElement from "./elements/Name"
 import PositionElement from "./elements/Position"
 import ElementCreator from "./ElementCreator"
 import TileElement from "./elements/Tile"
+import LanguagesElement from "./elements/Languages"
 
 export interface PageSectionProps {
 	section: IResumeSection
@@ -47,12 +48,19 @@ extends React.Component<PageSectionProps, PageSectionState> {
 					</header>
 				}
 				{section.elements.map((element, i) => {
+					const remover = () => section.remove(element)
 					switch (element.type) {
 						case "tile":
 							return <TileElement
 								key={i}
 								model={element}
-								onRemove={() => section.remove(element)}
+								onRemove={remover}
+							/>
+						case "languages":
+							return <LanguagesElement
+								key={i}
+								model={element}
+								onRemove={remover}
 							/>
 						default:
 							return null
