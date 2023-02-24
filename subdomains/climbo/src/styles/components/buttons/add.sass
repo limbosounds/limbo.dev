@@ -1,0 +1,33 @@
+@import "styles/vars"
+
+div.c-add-button
+	+transition
+	display: flex
+	align-items: center
+	justify-content: center
+	font-size: 12px
+	font-weight: 700
+	text-transform: uppercase
+	color: $colorMain
+	border: 2px dashed rgba($colorMain, .54)
+	cursor: pointer
+	
+	width: 100%
+	height: 40px
+	border-radius: 6px
+	&.small
+		height: 25px
+		border-radius: 3px
+	&.compact
+		width: 40px
+		&.small
+			width: 25px
+
+	&:hover, &.hover
+		background: rgba($colorMain, .12)
+		border-color: $colorMain
+
+	i
+		margin-right: 10px
+		&:last-child
+			margin-right: 0

@@ -1,5 +1,6 @@
 import React from "react"
 import { observer } from "mobx-react"
+import { Element as Tooltip } from "@sounds.of.limbo/tooltip"
 
 import "styles/views/editor/components/elements/header"
 
@@ -21,11 +22,14 @@ extends React.Component<ElementHeaderProps, ElementHeaderState> {
 	render() {
 		return <>
 			<header className="c-element-header">
-				<h2>
+				<Tooltip
+					element="h2"
+					content="Click to edit"
+				>
 					<ContentEditable
 						model={this.props.model}
 					/>
-				</h2>
+				</Tooltip>
 			</header>
 		</>
 	}

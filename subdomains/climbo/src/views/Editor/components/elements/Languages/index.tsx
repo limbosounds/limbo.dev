@@ -7,6 +7,8 @@ import { ILanguagesElement } from "models/Resume/elements/Languages"
 import ElementWrapper from "../Wrapper"
 import ElementHeader from "../Header"
 import LanguageItem from "./Item"
+import AddButton from "components/Buttons/Add"
+import { cast } from "mobx-state-tree"
 
 export interface LanguagesElementProps {
 	model: ILanguagesElement
@@ -37,9 +39,19 @@ extends React.Component<LanguagesElementProps, LanguagesElementState> {
 							return <LanguageItem
 								key={i}
 								model={item}
+								onRemove={() => model.remove(item)}
 							/>
 						})}
 					</div>
+					<AddButton
+						compact
+						size="small"
+						className="__no-print"
+						tooltip="Add language"
+						onClick={() => model.add(cast({
+							language: { value: "Language" },
+						}))}
+					/>
 				</div>
 			</ElementWrapper>
 		</>

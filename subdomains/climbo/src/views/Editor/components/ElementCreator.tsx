@@ -10,6 +10,7 @@ import { ResumeElementInstance, ResumeElementType } from "typings/Resume"
 import { resumeElements } from "consts/resume"
 import { TileElementModel } from "models/Resume/elements/Tile"
 import { LanguagesElementModel } from "models/Resume/elements/Languages"
+import AddButton from "components/Buttons/Add"
 
 export interface ElementCreatorProps {
 	onSelect: (
@@ -108,15 +109,12 @@ extends React.Component<ElementCreatorProps, ElementCreatorState> {
 	render() {
 		const { isMenuShown } = this.state
 		return <>
-			<div
-				className={`c-element-creator __no-print ${isMenuShown ? "menu-shown" : ""}`}
+			<AddButton
+				className={`c-element-creator __no-print ${isMenuShown ? "hover" : ""}`}
 				onClick={this.handleClick}
 			>
-				<i className="fas fa-plus" />
-				<span>
-					Add element
-				</span>
-			</div>
+				Add Element
+			</AddButton>
 			{isMenuShown && ReactDOM.createPortal(
 				<ElementCreatorMenu
 					position={this.clickCoords}
@@ -162,7 +160,7 @@ extends React.Component<ElementCreatorMenuProps, ElementCreatorMenuState> {
 		= {
 			tile: {
 				title: "Tile",
-				description: "Typically used for short listing of your skills",
+				description: "Typically used for short listing your skills",
 			},
 			contacts: {
 				title: "Contacts",
