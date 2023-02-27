@@ -9,10 +9,11 @@ import ElementHeader from "../Header"
 import LanguageItem from "./Item"
 import AddButton from "components/Buttons/Add"
 import { cast } from "mobx-state-tree"
+import { DefaultElementProps } from "typings/Resume"
 
-export interface LanguagesElementProps {
-	model: ILanguagesElement
-	onRemove: () => void
+export interface LanguagesElementProps
+extends DefaultElementProps<ILanguagesElement> {
+	
 }
 
 export interface LanguagesElementState {

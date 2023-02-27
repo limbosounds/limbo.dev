@@ -11,6 +11,7 @@ import { resumeElements } from "consts/resume"
 import { TileElementModel } from "models/Resume/elements/Tile"
 import { LanguagesElementModel } from "models/Resume/elements/Languages"
 import AddButton from "components/Buttons/Add"
+import { ContactsElementModel } from "models/Resume/elements/Contacts"
 
 export interface ElementCreatorProps {
 	onSelect: (
@@ -97,6 +98,20 @@ extends React.Component<ElementCreatorProps, ElementCreatorState> {
 					]
 				})
 				break
+			case "contacts":
+				modelInstance = ContactsElementModel.create({
+					type: "contacts",
+					items: [
+						{
+							type: "location",
+							value: "location",
+						},
+						{
+							type: "email",
+							value: "email",
+						},
+					]
+				})
 		}
 
 		if (typeof modelInstance == "undefined")

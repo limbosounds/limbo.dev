@@ -9,10 +9,11 @@ import InlineSelect from "components/Forms/Selects/Inline"
 import { createOptions } from "utils/select"
 import { languageProficiencies, languageProficienciesLabels } from "consts"
 import ContentEditable from "components/ContentEditable"
+import { DefaultElementProps } from "typings/Resume"
 
-export interface LanguageItemProps {
-	model: ILanguage
-	onRemove: () => void
+export interface LanguageItemProps
+extends DefaultElementProps<ILanguage> {
+	
 }
 
 export interface LanguageItemState {

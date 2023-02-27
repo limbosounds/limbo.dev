@@ -1,0 +1,40 @@
+@import "styles/vars"
+
+div.c-contact-item
+	position: relative
+	display: flex
+	align-items: center
+	justify-content: flex-start
+	margin: 10em 0
+	+transition(background)
+	&:hover
+		background: rgba($colorMain, .12)
+		span.ci-icons
+			i.ci-contact-icon
+				display: none
+	&:not(:hover)
+		span.ci-icons
+			i.ci-remover
+				display: none
+
+	span.ci-icons
+		position: relative
+		width: 25em
+		height: 25em
+		margin-right: 5em
+		i
+			+pos(absolute, 0, 0, 0, 0)
+			font-size: 16em
+			display: flex
+			align-items: center
+			justify-content: center
+			color: $colorMain
+			opacity: .54
+			+transition(opacity)
+			&:hover
+				opacity: 1
+
+	a
+		color: $colorMain
+		border-bottom: 1px dotted $colorMain
+		font-size: 14em

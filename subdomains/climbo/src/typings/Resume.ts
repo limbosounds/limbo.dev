@@ -26,3 +26,8 @@ export type ResumeElementInstance =
 	| ITileElement
 	| ILanguagesElement
 	| IContactsElement
+
+export interface DefaultElementProps<M> {
+	model: M
+	onRemove: () => void
+}

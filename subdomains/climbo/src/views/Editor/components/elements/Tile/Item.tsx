@@ -7,11 +7,11 @@ import "styles/views/editor/components/elements/tile/item"
 import { IEditableString } from "models/Resume/components/EditableString"
 
 import ContentEditable from "components/ContentEditable"
+import { DefaultElementProps } from "typings/Resume"
 
-export interface TileElementItemProps {
-	model: IEditableString
+export interface TileElementItemProps
+extends DefaultElementProps<IEditableString> {
 	creator: () => void
-	onRemove: () => void
 }
 
 export interface TileElementItemState {

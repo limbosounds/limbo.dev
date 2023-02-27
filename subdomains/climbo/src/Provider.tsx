@@ -22,7 +22,7 @@ extends React.Component<ProviderProps, ProviderState> {
 			<Helmet>
 				<link 
 					rel="stylesheet" 
-					href="/static/shared/font-awesome/style.css"
+					href="/static/shared/font-awesome/css/all.min.css"
 				/>
 				{/* <link
 					rel="icon"

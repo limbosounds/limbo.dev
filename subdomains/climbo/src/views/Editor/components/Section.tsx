@@ -12,6 +12,7 @@ import PositionElement from "./elements/Position"
 import ElementCreator from "./ElementCreator"
 import TileElement from "./elements/Tile"
 import LanguagesElement from "./elements/Languages"
+import ContactsElement from "./elements/Contacts"
 
 export interface PageSectionProps {
 	section: IResumeSection
@@ -58,6 +59,12 @@ extends React.Component<PageSectionProps, PageSectionState> {
 							/>
 						case "languages":
 							return <LanguagesElement
+								key={i}
+								model={element}
+								onRemove={remover}
+							/>
+						case "contacts":
+							return <ContactsElement
 								key={i}
 								model={element}
 								onRemove={remover}

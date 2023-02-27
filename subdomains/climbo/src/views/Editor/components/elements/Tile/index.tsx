@@ -10,10 +10,11 @@ import ElementHeader from "../Header"
 import ElementWrapper from "../Wrapper"
 import TileElementItem from "./Item"
 import AddButton from "components/Buttons/Add"
+import { DefaultElementProps } from "typings/Resume"
 
-export interface TileElementProps {
-	model: ITileElement
-	onRemove: () => void
+export interface TileElementProps
+extends DefaultElementProps<ITileElement> {
+	
 }
 
 export interface TileElementState {
