@@ -5,6 +5,7 @@ import { observer } from "mobx-react"
 import "styles/components/forms/selects/inline"
 
 import { Coordinates2D, Option } from "typings"
+import { isEventFiredInsideElement } from "utils/dom"
 
 export interface InlineSelectProps<
 	T extends string | number = string,
@@ -50,7 +51,7 @@ class InlineSelect<
 	get position(): Coordinates2D {
 		if (!this.element)
 			return { x: 0, y: 0 }
-
+		
 		const box = this.element.getBoundingClientRect()
 
 		return {
@@ -60,15 +61,31 @@ class InlineSelect<
 	}
 
 	componentDidMount() {
+		document.addEventListener("click", this.handleOutsideClick)
 		document.addEventListener("scroll", this.update)
+		window.addEventListener("resize", this.update)
 	}
 
 	componentWillUnmount() {
+		document.removeEventListener("click", this.handleOutsideClick)
 		document.removeEventListener("scroll", this.update)
+		window.removeEventListener("resize", this.update)
 	}
 
 	update = () => {
 		this.forceUpdate()
+	}
+
+	handleOutsideClick = (
+		event: MouseEvent
+	) => {
+		if (!this.element)
+			return
+
+		if (isEventFiredInsideElement(event.target, this.element))
+			return
+
+		this.hide()
 	}
 
 	hide = () => {
@@ -108,6 +125,7 @@ class InlineSelect<
 				</span>
 				<i className={`fas fa-caret-${isShown ? "up" : "down"}`} />
 			</Element>
+
 			{isShown &&
 				ReactDOM.createPortal(
 					<div

@@ -16,44 +16,22 @@ export interface LanguageItemProps {
 }
 
 export interface LanguageItemState {
-	isHovered: boolean
+	
 }
 
 @observer
 export default
 class LanguageItem
 extends React.Component<LanguageItemProps, LanguageItemState> {
-	state
-		: LanguageItemState
-		= {
-			isHovered: false
-		}
-
-	hover = () => {
-		this.setState({
-			isHovered: true,
-		})
-	}
-
-	unhover = () => {
-		this.setState({
-			isHovered: false,
-		})
-	}
-
 	render() {
 		const { model } = this.props
-		const { isHovered } = this.state
 		return <>
-			<div
-				className="c-language-item"
-				onMouseEnter={this.hover}
-				onMouseLeave={this.unhover}
-			>
+			<div className="c-language-item">
+				<i className="fas fa-globe" />
 				<Tooltip
 					element="i"
 					elementProps={{
-						className: `fas fa-${isHovered ? "trash-alt" : "globe"}`,
+						className: `fas fa-trash-alt`,
 						onClick: this.props.onRemove
 					}}
 					content="Remove language"

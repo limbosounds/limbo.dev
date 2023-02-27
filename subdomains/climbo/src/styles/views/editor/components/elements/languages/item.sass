@@ -1,17 +1,24 @@
 @import "styles/vars"
 
 div.c-language-item
-	padding-left: 30px
+	padding-left: 35px
 	position: relative
-	margin: 10px 0
+	margin: 1.2em 0
 	+transition(background)
 	&:hover
 		background: rgba($colorMain, .06)
+		i.fa-globe
+			display: none
+	&:not(:hover)
+		i.fa-trash-alt
+			display: none
+		
 	> i
 		+pos(absolute, 0, 0)
 		color: rgba($colorMain, .54)
-		width: 20px
-		height: 20px
+		font-size: 1.2em
+		width: 25px
+		height: 1.2em
 		display: flex
 		align-items: center
 		justify-content: center
@@ -46,3 +53,16 @@ div.c-language-item
 				color: black
 			&:before
 				opacity: 1
+
+@container section (min-width: 100mm)
+	div.c-language-item
+		display: flex
+		align-items: center
+		justify-content: space-between
+		padding-bottom: 8px
+		h3
+			margin-bottom: 0
+		&:after
+			content: ""
+			+pos(absolute, auto, 35px, 0, 0)
+			border-bottom: 1px dotted rgba(black, .18)
