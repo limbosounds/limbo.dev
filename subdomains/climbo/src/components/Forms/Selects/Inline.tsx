@@ -4,7 +4,7 @@ import { observer } from "mobx-react"
 
 import "styles/components/forms/selects/inline"
 
-import { Coordinates2D, Option } from "typings"
+import { Coordinates2D } from "typings"
 import { isEventFiredInsideElement } from "utils/dom"
 
 export interface InlineSelectProps<
@@ -13,9 +13,12 @@ export interface InlineSelectProps<
 > {
 	element?: E
 	elementProps?: React.HTMLAttributes<HTMLElementTagNameMap[E]>
-	options: Option<T>[]
+	options: readonly T[]
 	block?: boolean
 	selected: T
+	renderOption?: (
+		item: T
+	) => React.ReactNode
 	onSelect: (
 		value: T
 	) => void
@@ -105,7 +108,12 @@ class InlineSelect<
 	}
 
 	render() {
-		const { elementProps = {}, block, selected } = this.props
+		const {
+			elementProps = {},
+			block,
+			selected,
+			renderOption = item => item,
+		} = this.props
 		const { isShown } = this.state
 		const Element = this.props.element! as React.ElementType
 
@@ -135,20 +143,18 @@ class InlineSelect<
 							left: this.position.x,
 						}}
 					>
-						{this.props.options.map(option => {
-							const { value, label } = option
+						{this.props.options.map(value => {
 							const isSelected = value == selected
+
 							return <div
 								key={value}
-								className={`isl-item ${isSelected ? "selected" : ""}`}
+								className={`u-list-item isl-item ${isSelected ? "selected" : ""}`}
 								onClick={() => {
 									this.props.onSelect(value)
 									this.hide()
 								}}
 							>
-								<span className="isl-label">
-									{label}
-								</span>
+								{renderOption(value)}
 								{isSelected &&
 									<i className="fas fa-check" />
 								}

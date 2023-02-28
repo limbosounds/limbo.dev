@@ -6,14 +6,13 @@ import "styles/views/editor/components/elements/languages/item"
 
 import { ILanguage } from "models/Resume/elements/Languages"
 import InlineSelect from "components/Forms/Selects/Inline"
-import { createOptions } from "utils/select"
-import { languageProficiencies, languageProficienciesLabels } from "consts"
+import { languageProficiencies, languageProficienciesIcons, languageProficienciesLabels } from "consts"
 import ContentEditable from "components/ContentEditable"
 import { DefaultElementProps } from "typings/Resume"
 
 export interface LanguageItemProps
 extends DefaultElementProps<ILanguage> {
-	
+
 }
 
 export interface LanguageItemState {
@@ -51,9 +50,20 @@ extends React.Component<LanguageItemProps, LanguageItemState> {
 					elementProps={{
 						className: "li-proficiency"
 					}}
-					options={createOptions(languageProficiencies, languageProficienciesLabels)}
+					options={languageProficiencies}
 					onSelect={model.updateProficiency}
 					selected={model.proficiency}
+					renderOption={value => {
+						return <div
+							key={value}
+							className="u-list-item-inner"
+						>
+							<i className={`fas fa-${languageProficienciesIcons[value]}`} />
+							<span>
+								{languageProficienciesLabels[value]}
+							</span>
+						</div>
+					}}
 				>
 					{value => languageProficienciesLabels[value]}
 				</InlineSelect>

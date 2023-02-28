@@ -1,4 +1,5 @@
 import React from "react"
+import { cast } from "mobx-state-tree"
 import { observer } from "mobx-react"
 
 import "styles/views/editor/components/elements/contacts"
@@ -11,8 +12,8 @@ import ElementWrapper from "../Wrapper"
 import ElementHeader from "../Header"
 import ContactItem from "./Item"
 import AddButton from "components/Buttons/Add"
-import InlineSelect from "components/Forms/Selects/Inline"
-import { cast } from "mobx-state-tree"
+import ContextMenu from "components/ContextMenu"
+import { contactIcons, contactNames } from "consts"
 
 export interface ContactsElementProps
 extends DefaultElementProps<IContactsElement> {
@@ -47,28 +48,32 @@ extends React.Component<ContactsElementProps, ContactsElementState> {
 							/>
 						})}
 					</div>
-					<InlineSelect
-						options={model.availableContactTypes.map(value => {
-							return { label: value, value }
-						})}
-						selected={undefined as any}
-						onSelect={value => model.add(cast({
-							type: value,
-							value: value,
-						}))}
+					<ContextMenu
+						items={model.availableContactTypes}
+						onSelect={value => model.add(cast({ type: value, value }))}
+						renderItem={item => {
+							return <div
+								key={item}
+								className="c-contact-item-menu"
+							>
+								<i className={contactIcons[item]} />
+								<span>
+									{contactNames[item]}
+								</span>
+							</div>
+						}}
 					>
-						{() => (
-							<AddButton
+						{props => {
+							return <AddButton
 								compact
 								size="small"
-								className="__no-print"
-								tooltip="Add language"
-								// onClick={() => model.add(cast({
-								// 	language: { value: "Language" },
-								// }))}
+								className={`__no-print ab__iph ${props.className || ""}`}
+								tooltip="Add contact"
+								getRef={props.ref}
+								onClick={props.onClick}
 							/>
-						)}
-					</InlineSelect>
+						}}
+					</ContextMenu>
 				</div>
 			</ElementWrapper>
 		</>

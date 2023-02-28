@@ -1,0 +1,28 @@
+@import "styles/vars"
+
+div.c-contact-item-menu
+	display: flex
+	align-items: center
+	justify-content: flex-start
+	padding: 5px 15px 5px 5px
+	*:hover > &
+		i
+			opacity: 1
+		span
+			color: $colorMain
+
+	i
+		width: 30px
+		height: 30px
+		display: flex
+		align-items: center
+		justify-content: center
+		margin-right: 10px
+		color: $colorMain
+		opacity: .54
+		font-size: 18px
+		+transition(opacity)
+
+	span
+		font-size: 14px
+		+transition(color)

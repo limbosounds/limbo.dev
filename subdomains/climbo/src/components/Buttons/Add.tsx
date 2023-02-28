@@ -13,6 +13,9 @@ export interface AddButtonProps {
 	children?: React.ReactNode
 	className?: string
 	tooltip?: React.ReactNode
+	getRef?: (
+		r: HTMLDivElement
+	) => void
 	onClick?: (
 		event: React.MouseEvent<HTMLDivElement>
 	) => void
@@ -38,7 +41,8 @@ extends React.Component<AddButtonProps, AddButtonState> {
 				elementProps={{
 					className: `c-add-button ${compact ? "compact" : ""} ${size} ${className}`,
 					onClick: this.props.onClick,
-				}}
+					ref: this.props.getRef
+				} as React.HTMLAttributes<HTMLDivElement> & { [key: string]: any }}
 				content={this.props.tooltip}
 			>
 				<i className="fas fa-plus" />

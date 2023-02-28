@@ -9,6 +9,7 @@ import { ContactType } from "typings"
 import { IContact } from "models/Resume/elements/Contacts"
 import ContentEditable from "components/ContentEditable"
 import { DefaultElementProps } from "typings/Resume"
+import { contactIcons, contactNames } from "consts"
 
 export interface ContactItemProps
 extends DefaultElementProps<IContact> {
@@ -17,22 +18,6 @@ extends DefaultElementProps<IContact> {
 
 export interface ContactItemState {
 
-}
-
-const icons: {
-	[key in ContactType]: string
-} = {
-	location: "fas fa-map-marker-alt",
-	phone: "fas fa-phone",
-	email: "fas fa-envelope",
-	facebook: "fab fa-facebook",
-	github: "fab fa-github",
-	instagram: "fab fa-instagram",
-	linkedin: "fab fa-linkedin",
-	skype: "fab fa-skype",
-	telegram: "fab fa-telegram",
-	twitter: "fab fa-twitter",
-	vk: "fab fa-vk",
 }
 
 const links: {
@@ -59,21 +44,18 @@ class ContactItem
 extends React.Component<ContactItemProps, ContactItemState> {
 	render() {
 		const { model } = this.props
-		const contactName = model.type == "vk"
-			? model.type.toUpperCase()
-			: model.type.replace(/^(.)/g, group => group.toUpperCase())
 
 		return <>
 			<div className="c-contact-item">
 				<span className="ci-icons">
-					<i className={`ci-contact-icon ${icons[model.type]}`} />
+					<i className={`ci-contact-icon ${contactIcons[model.type]}`} />
 					<Tooltip
 						element="i"
 						elementProps={{
 							className: "ci-remover fas fa-trash-alt",
 							onClick: this.props.onRemove,
 						}}
-						content={`Remove ${contactName} contact`}
+						content={`Remove ${contactNames[model.type]}`}
 					/>
 				</span>
 				<Tooltip
@@ -81,9 +63,9 @@ extends React.Component<ContactItemProps, ContactItemState> {
 					elementProps={{
 						href: links[model.type](model.value),
 						onClick: event => event.preventDefault(),
-						// target: "_blank",
+						target: "_blank",
 					} as React.AnchorHTMLAttributes<HTMLAnchorElement>}
-					content={contactName}
+					content={contactNames[model.type]}
 				>
 					<ContentEditable
 						model={model}

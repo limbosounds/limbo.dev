@@ -26,16 +26,12 @@ div.c-inline-select-list
 		display: flex
 		align-items: center
 		justify-content: space-between
-		padding: 10px
-		position: relative
-		cursor: pointer
 		+transition(color, background)
 		> i
-			margin-left: 10px
-		&:not(.selected):hover
-			color: $colorMain
-			background: rgba($colorMain, .12)
+			margin-right: 10px
 		&.selected
 			font-weight: 700
 			color: $colorMain
 			background: rgba($colorMain, .06)
+			i
+				opacity: 1

@@ -14,3 +14,42 @@
 .u-fancy-scale-in
 	transform-origin: top left
 	+singleRunAnimation(fancyScaleIn, 300ms)
+
+.u-ignore-pointer
+	pointer-events: none
+
+.u-list-item
+	+transition(background)
+	cursor: pointer
+	border-bottom: 1px dotted rgba($colorMain, .38)
+	&:last-child
+		border-bottom: none
+	&:hover
+		background: rgba($colorMain, .12)
+
+	&-inner
+		display: flex
+		align-items: center
+		justify-content: flex-start
+		padding: 5px 15px 5px 5px
+		*:hover > &
+			i
+				opacity: 1
+			span
+				color: $colorMain
+
+		i
+			width: 30px
+			height: 30px
+			display: flex
+			align-items: center
+			justify-content: center
+			margin-right: 10px
+			color: $colorMain
+			opacity: .54
+			font-size: 18px
+			+transition(opacity)
+
+		span
+			font-size: 14px
+			+transition(color)

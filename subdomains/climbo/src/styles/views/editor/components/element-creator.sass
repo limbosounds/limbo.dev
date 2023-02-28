@@ -1,38 +1,33 @@
 @import "styles/vars"
 
 div.c-element-creator
-	&.hover
-		pointer-events: none
 
-div.c-element-creator-menu
-	color: black
-	position: fixed
-	max-width: 360px
-	background: white
-	border-radius: 6px
-	box-shadow: 0 12px 24px rgba(black, .24)
-	overflow: hidden
-	&.__temp
-		padding: 20px
+div.c-element-creator-item
+	padding: 15px
+	padding-left: 60px
+	position: relative
+	*:hover > &
+		i
+			opacity: 1
+		h4
+			color: $colorMain
 
-	div.ecm-item
-		padding: 15px
-		border-bottom: 1px solid rgba(black, .12)
-		cursor: pointer
-		+transition(background)
-		&:last-child
-			border-bottom: none
+	i
+		+pos(absolute, 15px, 15px, auto, 15px)
+		width: 30px
+		display: flex
+		align-items: center
+		justify-content: center
+		font-size: 24px
+		color: $colorMain
+		opacity: .54
+		+transition(opacity)
 
-		&:hover
-			background: rgba($colorMain, .12)
-			h3
-				color: $colorMain
+	h4
+		font-size: 18px
+		margin-bottom: 5px
+		+transition(color)
 
-		h3
-			font-size: 20px
-			margin-bottom: 5px
-			+transition(color)
-
-		p
-			font-size: 14px
-			color: rgba(black, .54)
+	p
+		opacity: .54
+		font-size: 14px
