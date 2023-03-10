@@ -1,0 +1,11 @@
+@import "styles/vars"
+
+.c-orderable
+	position: relative
+	&:after
+		+pos(absolute, 0, 0, 0, 0)
+		z-index: 1000
+
+	.__dragging &
+		&:after
+			content: ""

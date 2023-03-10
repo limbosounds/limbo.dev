@@ -76,13 +76,3 @@ export const contactNames: {
 	twitter: "Twitter",
 	vk: "VK",
 }
-
-export const pageFormats = [
-	"a4",
-	"letter",
-] as const
-
-export const pageOrientations = [
-	"portrait",
-	"landscape",
-] as const

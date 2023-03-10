@@ -56,9 +56,20 @@ extends React.Component<ElementCreatorProps, ElementCreatorState> {
 			case "tile":
 				modelInstance = TileElementModel.create({
 					type: "tile",
-					items: [
-						{ value: "Tile item", },
-					],
+					list: {
+						items: [
+							{ data: { value: "Tile item 0", }, },
+							{ data: { value: "Tile item 1", }, },
+							{ data: { value: "Tile item 2", }, },
+							{ data: { value: "Tile item 3", }, },
+							{ data: { value: "Tile item 4", }, },
+							{ data: { value: "Tile item 5", }, },
+							{ data: { value: "Tile item 6", }, },
+							{ data: { value: "Tile item 7", }, },
+							{ data: { value: "Tile item 8", }, },
+							{ data: { value: "Tile item 9", }, },
+						]
+					}
 				})
 				break
 			case "languages":

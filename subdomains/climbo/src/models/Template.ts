@@ -1,7 +1,7 @@
 import { Instance, types } from "mobx-state-tree"
 
 import { resumeLayouts } from "consts/resume"
-import { pageFormats, pageOrientations } from "consts"
+import { pageFormats, pageOrientations } from "consts/template"
 
 export interface ITemplate extends Instance<typeof TemplateModel> {}
 

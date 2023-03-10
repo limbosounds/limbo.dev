@@ -3,7 +3,7 @@ import { observer } from "mobx-react"
 
 import "styles/views/editor/components/page"
 
-import { PageFormat } from "typings"
+import { PageFormat } from "typings/Template"
 
 import { IResume } from "models/Resume"
 import { ITemplate } from "models/Template"

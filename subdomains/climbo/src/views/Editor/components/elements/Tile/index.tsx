@@ -11,6 +11,7 @@ import ElementWrapper from "../Wrapper"
 import TileElementItem from "./Item"
 import AddButton from "components/Buttons/Add"
 import { DefaultElementProps } from "typings/Resume"
+import OrderableComponent from "components/Orderable"
 
 export interface TileElementProps
 extends DefaultElementProps<ITileElement> {
@@ -38,14 +39,20 @@ extends React.Component<TileElementProps, TileElementState> {
 					<ElementHeader
 						model={model.title}
 					/>
-					<div className="te-list">
-						{model.items.map((item, i) => {
-							return <TileElementItem
-								key={i}
-								model={item}
-								creator={creator}
-								onRemove={() => model.remove(item)}
-							/>
+					<div className={`te-list ${model.list.isDragged ? "__dragging" : ""}`}>
+						{model.list.items.map((item, index) => {
+							return <OrderableComponent
+								key={item.id}
+								id={item.id}
+								index={index}
+								model={model.list}
+							>
+								<TileElementItem
+									model={item.data}
+									creator={creator}
+									onRemove={() => model.remove(item)}
+								/>
+							</OrderableComponent>
 						})}
 						<AddButton
 							compact
